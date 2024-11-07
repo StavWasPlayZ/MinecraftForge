@@ -21,7 +21,8 @@ public abstract class CreateRenderStateEvent extends Event {
     private final EntityRenderState state;
     private final float packedLight;
 
-    public CreateRenderStateEvent(EntityRenderer<?, ?> renderer, Entity entity, EntityRenderState state, float packedLight) {
+    @ApiStatus.Internal
+    protected CreateRenderStateEvent(EntityRenderer<?, ?> renderer, Entity entity, EntityRenderState state, float packedLight) {
         this.renderer = renderer;
         this.entity = entity;
         this.state = state;
