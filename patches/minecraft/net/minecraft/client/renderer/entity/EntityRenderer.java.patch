@@ -12,6 +12,16 @@
          }
      }
  
+@@ -242,7 +_,9 @@
+ 
+     public final S createRenderState(T p_363266_, float p_363950_) {
+         S s = this.reusedState;
++        net.minecraftforge.client.event.ForgeEventFactoryClient.onCreateRenderStatePre(this, p_363266_, s, p_363950_);
+         this.extractRenderState(p_363266_, s, p_363950_);
++        net.minecraftforge.client.event.ForgeEventFactoryClient.onCreateRenderStatePost(this, p_363266_, s, p_363950_);
+         return s;
+     }
+ 
 @@ -268,7 +_,7 @@
          }
  

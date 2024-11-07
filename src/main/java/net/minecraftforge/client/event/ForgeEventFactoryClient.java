@@ -8,6 +8,8 @@ package net.minecraftforge.client.event;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
@@ -218,6 +220,14 @@ public final class ForgeEventFactoryClient {
 
     public static ViewportEvent.ComputeCameraAngles fireComputeCameraAngles(GameRenderer renderer, Camera camera, float partial) {
         return fire(new ViewportEvent.ComputeCameraAngles(renderer, camera, partial, camera.getYRot(), camera.getXRot(), 0));
+    }
+
+    public static void onCreateRenderStatePre(EntityRenderer<?, ?> renderer, Entity entity, EntityRenderState state, float packedLight) {
+        post(new CreateRenderStateEvent.Pre(renderer, entity, state, packedLight));
+    }
+
+    public static void onCreateRenderStatePost(EntityRenderer<?, ?> renderer, Entity entity, EntityRenderState state, float packedLight) {
+        post(new CreateRenderStateEvent.Post(renderer, entity, state, packedLight));
     }
 
     public static <T extends LivingEntity, S extends LivingEntityRenderState, M extends EntityModel<? super S>> boolean onRenderLivingPre(S state, LivingEntityRenderer<T, S, M> renderer, PoseStack poseStack, MultiBufferSource multiBufferSource, int packedLight) {
